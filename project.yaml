@@ -4,10 +4,10 @@ version: 0.0.1
 runner:
   node:
     name: "@subql/node-avalanche"
-    version: "*"
+    version: ">=0.2.0"
   query:
     name: "@subql/query"
-    version: "*"
+    version: ">=1.2.0"
 description: The goal of this quick start guide is to index all Pangolin token Approve logs
 repository: "https://github.com/jamesbayly/pangolin-approvals-tutorial"
 schema:
