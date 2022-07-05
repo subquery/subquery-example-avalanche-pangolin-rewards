@@ -1,12 +1,5 @@
 import { PangolinApproval } from "../types";
 import { AvalancheLog } from "@subql/types-avalanche";
-import { BigNumber } from '@ethersproject/bignumber';
-
-type ApprovalEvent = {
-  owner: string;
-  spender: string;
-  amount: BigNumber;
-}
 
 export async function handleLog(event: AvalancheLog): Promise<void> {
   const pangolinApprovalRecord = new PangolinApproval(
@@ -21,7 +14,7 @@ export async function handleLog(event: AvalancheLog): Promise<void> {
   if (args) {
     pangolinApprovalRecord.owner = args.owner;
     pangolinApprovalRecord.spender = args.spender;
-    pangolinApprovalRecord.amount = BigInt(args.amount.toString());
+    pangolinApprovalRecord.amount = BigInt(args.value.toString());
   }
 
   await pangolinApprovalRecord.save();
