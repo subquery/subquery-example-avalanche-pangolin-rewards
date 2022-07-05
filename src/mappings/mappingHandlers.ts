@@ -10,10 +10,12 @@ export async function handleLog(event: AvalancheLog): Promise<void> {
   pangolinApprovalRecord.blockHash = event.blockHash;
   pangolinApprovalRecord.blockNumber = BigInt(event.blockNumber);
 
-  // topics store data as an array
-  pangolinApprovalRecord.addressFrom = event.topics[0];
-  pangolinApprovalRecord.addressTo = event.topics[1];
-  pangolinApprovalRecord.amount = BigInt(event.topics[2]);
+  const { args } = event;
+  if (args) {
+    pangolinApprovalRecord.owner = args.owner;
+    pangolinApprovalRecord.spender = args.spender;
+    pangolinApprovalRecord.amount = BigInt(args.value.toString());
+  }
 
   await pangolinApprovalRecord.save();
 }

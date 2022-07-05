@@ -3,7 +3,7 @@ type PangolinApproval @entity {
   transactionHash: String!
   blockNumber: BigInt!
   blockHash: String!
-  addressFrom: String
-  addressTo: String
+  owner: String
+  spender: String
   amount: BigInt
 }
