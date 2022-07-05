@@ -35,5 +35,5 @@ dataSources:
           kind: avalanche/LogHandler
           filter:
             ## Follows standard log filters https://docs.ethers.io/v5/concepts/events/
-            function: Approve(address spender, uint256 rawAmount)
-            address: "0x60781C2586D68229fde47564546784ab3fACA982"
+            topics:
+              - Approval(address owner, address spender, uint256 value)

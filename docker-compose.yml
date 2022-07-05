@@ -15,9 +15,11 @@ services:
       timeout: 5s
       retries: 5
 
-  node_qme3w3xsaopxucs:
-    image: onfinality/subql-node-avalanche:v0.2.0
-    container_name: node_qme3w3xsaopxucs
+  subquery-node:
+    image: onfinality/subql-node-avalanche:latest
+    depends_on:
+      "postgres":
+        condition: service_healthy
     restart: always
     environment:
       DB_USER: postgres
@@ -28,34 +30,22 @@ services:
     volumes:
       - ./:/app
     command:
-      - -f=ipfs://QmWrtyLAeep1UL8zxEmuFsTqZvmWvE5CHaHRFbpST3Xq6z
-      - -d=https://api.subquery.network/sq/subquery/avalanche-dictionary
-      - --ipfs=https://ipfs.subquery.network/ipfs/api/v0
-      - --db-schema=app_QmWrtyLAeep1UL8zxEmuFsTqZvmWvE5CHaHRFbpST3Xq6z
-      - --network-endpoint=http://avalanche.api.onfinality.io:9650
-      - --port=3002
-      - --proof-of-index=false
-      - -m=/var/tmp/composeFiles/Qma3iHivTUPAQLiC9zzXmYZ99uziZLmT85C6dvVPQEFVy8/.mmr
-      - --disable-historical=true
+      - -f=/app
+      - --db-schema=app
     healthcheck:
-      test:
-        [
-          "CMD",
-          "curl",
-          "-f",
-          "http://node_qme3w3xsaopxucs:3002/ready"
-        ]
+      test: ["CMD", "curl", "-f", "http://subquery-node:3000/ready"]
       interval: 3s
       timeout: 5s
-      retries: 100
+      retries: 10
 
-  query_qme3w3xsaopxucs:
-    image: onfinality/subql-query:v1.2.0
-    container_name: query_qme3w3xsaopxucs
+  graphql-engine:
+    image: onfinality/subql-query:latest
     ports:
-      - 3002:3002
+      - 3000:3000
     depends_on:
-      "node_qme3w3xsaopxucs":
+      "postgres":
+        condition: service_healthy
+      "subquery-node":
         condition: service_healthy
     restart: always
     environment:
@@ -65,11 +55,6 @@ services:
       DB_HOST: postgres
       DB_PORT: 5432
     command:
-      - --name=app_QmWrtyLAeep1UL8zxEmuFsTqZvmWvE5CHaHRFbpST3Xq6z
+      - --name=app
       - --playground
-      - --indexer=http://node_qme3w3xsaopxucs:3002
-      - --port=3002
-
-networks:
-  default:
-    name: coordinator-service
+      - --indexer=http://subquery-node:3000
