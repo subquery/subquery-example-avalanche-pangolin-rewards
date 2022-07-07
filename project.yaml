@@ -19,8 +19,7 @@ network:
   dictionary: "https://api.subquery.network/sq/subquery/avalanche-dictionary"
 dataSources:
   - kind: avalanche/Runtime
-    startBlock: 16993850
-    # startBlock: 7689920 # Block when the Pangolin Reward contract was created
+    startBlock: 7689920 # Block when the Pangolin Reward contract was created
     options:
       # Must be a key of assets
       abi: erc20
