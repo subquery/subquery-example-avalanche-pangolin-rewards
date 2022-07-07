@@ -19,12 +19,13 @@ network:
   dictionary: "https://api.subquery.network/sq/subquery/avalanche-dictionary"
 dataSources:
   - kind: avalanche/Runtime
-    startBlock: 57360 # Block when the Pangolin contract was created
+    startBlock: 16993850
+    # startBlock: 7689920 # Block when the Pangolin Reward contract was created
     options:
       # Must be a key of assets
       abi: erc20
-      ## Pangolin token https://snowtrace.io/token/0x60781c2586d68229fde47564546784ab3faca982
-      address: "0x60781C2586D68229fde47564546784ab3fACA982"
+      ## Pangolin token https://snowtrace.io/token/0x88afdae1a9f58da3e68584421937e5f564a0135b
+      address: "0x88afdae1a9f58da3e68584421937e5f564a0135b"
     assets:
       erc20:
         file: "./node_modules/@pangolindex/exchange-contracts/artifacts/contracts/pangolin-core/interfaces/IPangolinERC20.sol/IPangolinERC20.json"
@@ -36,4 +37,4 @@ dataSources:
           filter:
             ## Follows standard log filters https://docs.ethers.io/v5/concepts/events/
             topics:
-              - Approval(address owner, address spender, uint256 value)
+              - RewardPaid(address user, uint256 reward)

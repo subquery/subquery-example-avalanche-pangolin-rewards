@@ -1,9 +1,8 @@
-type PangolinApproval @entity {
+type PangolinRewards @entity {
   id: ID! # Id is required and made up of block has and log index
   transactionHash: String!
   blockNumber: BigInt!
   blockHash: String!
-  owner: String
-  spender: String
+  receiver: String
   amount: BigInt
 }
