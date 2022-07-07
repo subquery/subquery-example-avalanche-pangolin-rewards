@@ -4,14 +4,14 @@
   "description": "The goal of this quick start guide is to index all Pangolin token Approve logs.",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc -b",
+    "build": "subql build",
     "prepack": "rm -rf dist && npm build",
     "test": "jest",
     "codegen": "./node_modules/.bin/subql codegen",
     "start:docker": "docker-compose pull && docker-compose up --remove-orphans"
   },
-  "homepage": "https://github.com/jamesbayly/pangolin-approvals-tutorial",
-  "repository": "github:jamesbayly/pangolin-approvals-tutorial",
+  "homepage": "https://github.com/jamesbayly/pangolin-rewards-tutorial",
+  "repository": "github:jamesbayly/pangolin-rewards-tutorial",
   "files": [
     "dist",
     "schema.graphql",
@@ -20,7 +20,7 @@
   "author": "James Bayly",
   "license": "MIT",
   "dependencies": {
-    "@pangolindex/exchange-contracts": "^1.0.2",
+    "@pangolindex/exchange-contracts": "^2.1.0",
     "@polkadot/api": "^8",
     "@subql/common": "latest",
     "@subql/validator": "latest",
@@ -29,7 +29,7 @@
   "devDependencies": {
     "@subql/cli": "latest",
     "@subql/types": "latest",
-    "@subql/types-avalanche": "dev",
+    "@subql/types-avalanche": "latest",
     "typescript": "4.5.5"
   }
 }
