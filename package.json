@@ -29,7 +29,7 @@
   "devDependencies": {
     "@subql/cli": "latest",
     "@subql/types": "latest",
-    "@subql/types-avalanche": "dev",
+    "@subql/types-avalanche": "latest",
     "typescript": "4.5.5"
   }
 }

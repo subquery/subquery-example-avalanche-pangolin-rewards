@@ -24,11 +24,11 @@ dataSources:
     options:
       # Must be a key of assets
       abi: erc20
-      ## Pangolin token https://snowtrace.io/token/0x88afdae1a9f58da3e68584421937e5f564a0135b
+      ## Pangolin reward contract https://snowtrace.io/token/0x88afdae1a9f58da3e68584421937e5f564a0135b
       address: "0x88afdae1a9f58da3e68584421937e5f564a0135b"
     assets:
       erc20:
-        file: "./node_modules/@pangolindex/exchange-contracts/artifacts/contracts/pangolin-core/interfaces/IPangolinERC20.sol/IPangolinERC20.json"
+        file: "./node_modules/@pangolindex/exchange-contracts/artifacts/contracts/staking-rewards/StakingRewards.sol/StakingRewards.json"
     mapping:
       file: "./dist/index.js"
       handlers:
