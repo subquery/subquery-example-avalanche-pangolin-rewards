@@ -10,8 +10,8 @@
     "codegen": "./node_modules/.bin/subql codegen",
     "start:docker": "docker-compose pull && docker-compose up --remove-orphans"
   },
-  "homepage": "https://github.com/jamesbayly/pangolin-approvals-tutorial",
-  "repository": "github:jamesbayly/pangolin-approvals-tutorial",
+  "homepage": "https://github.com/jamesbayly/pangolin-rewards-tutorial",
+  "repository": "github:jamesbayly/pangolin-rewards-tutorial",
   "files": [
     "dist",
     "schema.graphql",

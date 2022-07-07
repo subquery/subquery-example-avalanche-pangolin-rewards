@@ -1,6 +1,6 @@
 # SubQuery - Pangolin Tutorial Package
 
-The goal of this quick start guide is to index all Pangolin token Approve logs.
+The goal of this quick start guide is to index all Pangolin token Reward logs.
 
 [Follow the tutorial here](https://academy.subquery.network/quickstart/quickstart_chains/avalanche.html)
 
@@ -78,7 +78,7 @@ yarn build
 Under the project directory run following command:
 
 ```
-docker-compose pull && docker-compose up
+yarn start:docker
 ```
 
 #### Query the project
@@ -90,16 +90,17 @@ Finally, you should see a GraphQL playground is showing in the explorer and the 
 For the `subql-starter` project, you can try to query with the following code to get a taste of how it works.
 
 ```graphql
-{
-  query {
-    starterEntities(first: 10) {
-      nodes {
-        field1
-        field2
-        field3
-      }
+# Write your query or mutation here
+query {
+  pangolinRewards(first: 5) {
+    nodes {
+      id
+      receiver
+      amount
+      blockNumber
+      blockHash
+      transactionHash
     }
   }
 }
 ```
-# pangolin-approvals-tutorial
