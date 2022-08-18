@@ -13,7 +13,8 @@ repository: "https://github.com/jamesbayly/pangolin-rewards-tutorial"
 schema:
   file: ./schema.graphql
 network:
-  endpoint: "https://avalanche.api.onfinality.io"
+  endpoint: "https://avalanche.api.onfinality.io/public"
+  # endpoint:  https://api.avax-test.network
   chainId: mainnet
   subnet: C
   dictionary: "https://api.subquery.network/sq/subquery/avalanche-dictionary"
