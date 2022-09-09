@@ -13,11 +13,19 @@ repository: "https://github.com/jamesbayly/pangolin-rewards-tutorial"
 schema:
   file: ./schema.graphql
 network:
+  chainId: "wGHE2Pwdvd7S12BL5FaOP20EGYesN73ktiC1qzkkit8="
+  subnet: "C"
+  # This endpoint must be a public non-pruned archive node
+  # Public nodes may be rate limited, which can affect indexing speed
+  # When developing your project we suggest getting a private API key
+  # You can get them from OnFinality for free https://app.onfinality.io
+  # https://documentation.onfinality.io/support/the-enhanced-api-service
   endpoint: "https://avalanche.api.onfinality.io/public"
-  # endpoint:  https://api.avax-test.network
-  chainId: mainnet
-  subnet: C
-  dictionary: "https://api.subquery.network/sq/subquery/avalanche-dictionary"
+  # Optionally provide the HTTP endpoint of a full chain dictionary to speed up processing
+  dictionary: https://api.subquery.network/sq/subquery/Algorand-Dictionary
+  # For the testnet use the following
+  # chainId: "SGO1GKSzyE7IEPItTxCByw9x8FmnrCDexi9/cOUJOiI="
+  # endpoint: "https://algoindexer.testnet.algoexplorerapi.io"
 dataSources:
   - kind: avalanche/Runtime
     startBlock: 7906490 # Block when the first reward is made
