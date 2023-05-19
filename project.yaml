@@ -1,9 +1,9 @@
 specVersion: 1.0.0
-name: avalanche-subql-starter
+name: pangolin-rewards-subql-tutorial
 version: 0.0.1
 runner:
   node:
-    name: "@subql/node-avalanche"
+    name: "@subql/node-ethereum"
     version: "*"
   query:
     name: "@subql/query"
@@ -13,18 +13,20 @@ repository: "https://github.com/jamesbayly/pangolin-rewards-tutorial"
 schema:
   file: ./schema.graphql
 network:
-  chainId: "mainnet"
-  subnet: "C"
+  # chainId is the EVM Chain ID, for Avalanche-C chain is 43114
+  # https://chainlist.org/chain/43114
+  chainId: "43114"
   # This endpoint must be a public non-pruned archive node
+  # We recommend providing more than one endpoint for improved reliability, performance, and uptime
   # Public nodes may be rate limited, which can affect indexing speed
   # When developing your project we suggest getting a private API key
   # You can get them from OnFinality for free https://app.onfinality.io
   # https://documentation.onfinality.io/support/the-enhanced-api-service
-  endpoint: "https://avalanche.api.onfinality.io/public"
-  # Optionally provide the HTTP endpoint of a full chain dictionary to speed up processing
-  dictionary: https://api.subquery.network/sq/subquery/avalanche-dictionary
+  endpoint: ["https://avalanche.api.onfinality.io/public/ext/bc/C/rpc"]
+  # Recommended to provide the HTTP endpoint of a full chain dictionary to speed up processing
+  dictionary: "https://api.subquery.network/sq/subquery/avalanche-dictionary"
 dataSources:
-  - kind: avalanche/Runtime
+  - kind: ethereum/Runtime # We use ethereum runtime since Avalanche is compatible
     startBlock: 7906490 # Block when the first reward is made
     options:
       # Must be a key of assets
@@ -33,12 +35,12 @@ dataSources:
       address: "0x88afdae1a9f58da3e68584421937e5f564a0135b"
     assets:
       erc20:
-        file: "./node_modules/@pangolindex/exchange-contracts/artifacts/contracts/staking-rewards/StakingRewards.sol/StakingRewards.json"
+        file: "./abis/PangolinRewards.json"
     mapping:
       file: "./dist/index.js"
       handlers:
         - handler: handleLog
-          kind: avalanche/LogHandler
+          kind: ethereum/LogHandler # We use ethereum handlers since Avalanche is compatible
           filter:
             ## Follows standard log filters https://docs.ethers.io/v5/concepts/events/
             topics:
